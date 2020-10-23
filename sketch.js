@@ -4,21 +4,25 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 
-var ground, paperObject, wall, ceiling, basket1, basket2, basket3, dustbin;
+var ground, paperObject, wall, ceiling, basket1, basket2, basket3, dustbinImage, dustbin;
 
 function preload(){
 	
+	dustbinImage = loadImage("png's/dustbingreen.png")
+
 }
 
 function setup() {
 	createCanvas(1000, 700);
-
+	//ustbin = createSprite(400,100,20,20);
+    //dustbin.addImage(dustbinImage);
+    //dustbin.scale = 1;
 
 	engine = Engine.create();
 	world = engine.world;
-	basket1 = new Basket(700,680,200,20)
-	basket2 = new Basket(590,640,20,100)
-	basket3 = new Basket(810,640,20,100)
+	basket1 = new Basket(800,680,150,20)
+	basket2 = new Basket(715,600,20,220)
+	basket3 = new Basket(885,600,20,220)
 	wall = new Ground(1000,320,10,1000)
 	ceiling = new Ground(350,0,14000,10)
 	paperObject = new Paper(100,690,70)
@@ -31,10 +35,9 @@ function setup() {
 
 function draw() {
   rectMode(CENTER);
-  background(211,211,211);
+  background("white");
   
-  
-  if (keyCode === UP_ARROW) {
+  if (keyCode === DOWN_ARROW) {
 	   
 	keyPressed();
 
@@ -46,10 +49,11 @@ function draw() {
   wall.display();
   ground.display();
   paperObject.display(); 
+  image(dustbinImage,700,490,200,200);
 }
 
 function keyPressed() {
 	   
-	Matter.Body.applyForce(paperObject.body,paperObject.body.position,{x:5,y:-10});
+	Matter.Body.applyForce(paperObject.body,paperObject.body.position,{x:120,y:-121});
 }
 
